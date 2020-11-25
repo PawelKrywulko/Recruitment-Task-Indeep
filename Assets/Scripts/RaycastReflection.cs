@@ -12,6 +12,7 @@ public class RaycastReflection : MonoBehaviour
     
     private Ray _ray;
     private LineRenderer _lineRenderer;
+    private RaycastHitDetection _hitDetection;
 
     private void Start()
     {
@@ -32,17 +33,35 @@ public class RaycastReflection : MonoBehaviour
 
         while (Physics.Raycast(_ray.origin, _ray.direction, out RaycastHit hit, maxRayDistance, ObstacleLayerMask))
         {
+            if (Physics.Raycast(_ray.origin, _ray.direction, out RaycastHit hitCharacter, maxRayDistance, CharacterLayerMask))
+            {
+                //if hits some character - stop reflecting
+                ManageCharacterHit(hitCharacter);
+                return;
+            }
+
+            if (_hitDetection)
+            {
+                _hitDetection.OnRaycastHitStop();
+                _hitDetection = null;
+            }
+
             _lineRenderer.positionCount += 1;
             _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, hit.point);
             _ray = new Ray(hit.point, Vector3.Reflect(_ray.direction, hit.normal));
-            
-            if (Physics.Raycast(_ray.origin, _ray.direction, out RaycastHit hitPlayer, Mathf.Infinity, CharacterLayerMask))
-            {
-                //if hits some character - stop reflecting
-                _lineRenderer.positionCount += 1;
-                _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, hitPlayer.point);
-                return;
-            }
+        }
+    }
+
+    private void ManageCharacterHit(RaycastHit hitCharacter)
+    {
+        _lineRenderer.positionCount += 1;
+        _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, hitCharacter.point);
+        
+        var hitObject = hitCharacter.collider.gameObject;
+        _hitDetection = hitObject.GetComponent<RaycastHitDetection>();
+        if (_hitDetection)
+        {
+            _hitDetection.OnRaycastHit();
         }
     }
 }
