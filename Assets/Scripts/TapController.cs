@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class TapController : TouchControllerBasic
 {
     [SerializeField] private float tapTimeThreshold = 0.1f;
+
+    public static event EventHandler OnSingleTap;
     
     private float _touchBeganTimestamp;
     private Vector2 _touchBeganPosition;
@@ -19,7 +22,7 @@ public class TapController : TouchControllerBasic
             case TouchPhase.Ended:
                 if (IsSingleTap())
                 {
-                    //TODO Fire()
+                    OnSingleTap?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             default:
