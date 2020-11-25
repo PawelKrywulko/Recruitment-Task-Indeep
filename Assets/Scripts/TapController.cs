@@ -1,23 +1,19 @@
 ﻿using UnityEngine;
 
-public class TouchController : MonoBehaviour
+public class TapController : TouchControllerBasic
 {
-    [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float tapTimeThreshold = 0.1f;
     
-    private Touch _touch;
     private float _touchBeganTimestamp;
     private Vector2 _touchBeganPosition;
-    
-    private void Update()
+
+    private new void Update()
     {
-        if (Input.touchCount < 1) return;
-        
-        _touch = Input.GetTouch(0);
-        switch (_touch.phase)
+        base.Update();
+        switch (Touch.phase)
         {
             case TouchPhase.Began:
-                _touchBeganPosition = _touch.position;
+                _touchBeganPosition = Touch.position;
                 _touchBeganTimestamp = Time.time;
                 break;
             case TouchPhase.Ended:
@@ -26,17 +22,15 @@ public class TouchController : MonoBehaviour
                     //TODO Fire()
                 }
                 break;
-            case TouchPhase.Moved:
-                transform.Rotate(0,_touch.deltaPosition.x * Time.deltaTime * rotationSpeed, 0);
-                break;
             default:
                 return;
         }
     }
-
+    
     private bool IsSingleTap()
     {
-        return _touch.position == _touchBeganPosition &&
+        return Touch.position == _touchBeganPosition &&
                Time.time - _touchBeganTimestamp <= tapTimeThreshold;
+
     }
 }
