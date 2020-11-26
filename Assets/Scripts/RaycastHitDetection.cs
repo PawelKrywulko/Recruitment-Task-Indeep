@@ -1,10 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
+[RequireComponent(typeof(RagdollController))]
 public class RaycastHitDetection : MonoBehaviour
 {
     private bool _isHit = false;
     private bool _isTargeted = false;
+    private RagdollController _ragdollController;
+
+    private void Awake()
+    {
+        _ragdollController = GetComponent<RagdollController>();
+    }
 
     public void OnRaycastHit()
     {
@@ -31,7 +38,7 @@ public class RaycastHitDetection : MonoBehaviour
         if (_isTargeted && !_isHit)
         {
             _isHit = true;
-            Destroy(gameObject); //TODO Add ragdoll
+            _ragdollController.EnableRagdollEffect();
         }
     }
 }
