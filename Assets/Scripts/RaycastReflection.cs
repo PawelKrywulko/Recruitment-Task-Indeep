@@ -10,6 +10,7 @@ public class RaycastReflection : MonoBehaviour
     
     private const int ObstacleLayerMask = 1 << 8;
     private const int CharacterLayerMask = 1 << 9;
+    private const int WallLayerMask = 1 << 10;
     
     private Ray _ray;
     private LineRenderer _lineRenderer;
@@ -58,11 +59,10 @@ public class RaycastReflection : MonoBehaviour
                         _reflectionsCount = i;
                         ManageCharacterHit(hit);
                         break;
+                    case WallLayerMask:
+                        ResetHitDetection();
+                        break;
                 }
-            }
-            else
-            {
-                ResetHitDetection();
             }
         }
     }
@@ -82,6 +82,7 @@ public class RaycastReflection : MonoBehaviour
         if (_hitDetection)
         {
             _hitDetection.OnRaycastHitStop();
+            _hitDetection = null;
         }
     }
 }
