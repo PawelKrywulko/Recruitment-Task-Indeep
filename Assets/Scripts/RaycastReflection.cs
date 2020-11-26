@@ -5,6 +5,7 @@ public class RaycastReflection : MonoBehaviour
 {
     [SerializeField] private float lineWidth = 0.1f;
     [SerializeField] private float maxRayDistance = 100f;
+    [SerializeField] private int maxReflectionsCount = 10;
     [SerializeField] private Transform rayOriginTransform;
     
     private const int ObstacleLayerMask = 1 << 8;
@@ -13,9 +14,11 @@ public class RaycastReflection : MonoBehaviour
     private Ray _ray;
     private LineRenderer _lineRenderer;
     private RaycastHitDetection _hitDetection;
+    private int _reflectionsCount;
 
     private void Start()
     {
+        _reflectionsCount = maxReflectionsCount;
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.startWidth = lineWidth;
 
@@ -27,41 +30,58 @@ public class RaycastReflection : MonoBehaviour
 
     private void Update()
     {
+        Reflect();
+    }
+
+    private void Reflect()
+    {
         _ray = new Ray(rayOriginTransform.position, transform.forward);
         _lineRenderer.positionCount = 1;
         _lineRenderer.SetPosition(0, rayOriginTransform.position);
+        _reflectionsCount = maxReflectionsCount;
 
-        while (Physics.Raycast(_ray.origin, _ray.direction, out RaycastHit hit, maxRayDistance, ObstacleLayerMask))
+        for (int i = 1; i <= _reflectionsCount; i++)
         {
-            if (Physics.Raycast(_ray.origin, _ray.direction, out RaycastHit hitCharacter, maxRayDistance, CharacterLayerMask))
+            if (Physics.Raycast(_ray.origin, _ray.direction, out RaycastHit hit, maxRayDistance))
             {
-                //if hits some character - stop reflecting
-                ManageCharacterHit(hitCharacter);
-                return;
-            }
+                _lineRenderer.positionCount += 1;
+                _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, hit.point);
 
-            if (_hitDetection)
+                switch (1 << hit.collider.gameObject.layer)
+                {
+                    case ObstacleLayerMask:
+                        _ray = new Ray(hit.point, Vector3.Reflect(_ray.direction, hit.normal));
+                        ResetHitDetection();
+                        break;
+                    case CharacterLayerMask:
+                        //if hits character - stop reflecting
+                        _reflectionsCount = i;
+                        ManageCharacterHit(hit);
+                        break;
+                }
+            }
+            else
             {
-                _hitDetection.OnRaycastHitStop();
-                _hitDetection = null;
+                ResetHitDetection();
             }
-
-            _lineRenderer.positionCount += 1;
-            _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, hit.point);
-            _ray = new Ray(hit.point, Vector3.Reflect(_ray.direction, hit.normal));
         }
     }
 
     private void ManageCharacterHit(RaycastHit hitCharacter)
     {
-        _lineRenderer.positionCount += 1;
-        _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, hitCharacter.point);
-        
         var hitObject = hitCharacter.collider.gameObject;
         _hitDetection = hitObject.GetComponent<RaycastHitDetection>();
         if (_hitDetection)
         {
             _hitDetection.OnRaycastHit();
+        }
+    }
+
+    private void ResetHitDetection()
+    {
+        if (_hitDetection)
+        {
+            _hitDetection.OnRaycastHitStop();
         }
     }
 }
