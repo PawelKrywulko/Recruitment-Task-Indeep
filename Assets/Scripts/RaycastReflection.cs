@@ -35,7 +35,7 @@ public class RaycastReflection : MonoBehaviour
 
     private void Reflect()
     {
-        _ray = new Ray(rayOriginTransform.position, transform.forward);
+        _ray = new Ray(rayOriginTransform.position, rayOriginTransform.forward);
         _lineRenderer.positionCount = 1;
         _lineRenderer.SetPosition(0, rayOriginTransform.position);
         _reflectionsCount = maxReflectionsCount;
