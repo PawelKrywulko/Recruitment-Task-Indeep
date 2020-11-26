@@ -31,7 +31,7 @@ public class RaycastHitDetection : MonoBehaviour
         if (_isTargeted && !_isHit)
         {
             _isHit = true;
-            print($"{name} is HIT");
+            Destroy(gameObject); //TODO Add ragdoll
         }
     }
 }
