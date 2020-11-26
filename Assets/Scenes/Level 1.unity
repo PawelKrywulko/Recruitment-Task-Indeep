@@ -1755,15 +1755,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1453867475, guid: 6381fd56ca7f1654e870be9272e77324, type: 3}
-      propertyPath: rayOriginTransform
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5586859342856428148, guid: 6381fd56ca7f1654e870be9272e77324,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 382781f3eb846ba4992cfb4e635c76ed, type: 2}
     - target: {fileID: 5610853682677192268, guid: 6381fd56ca7f1654e870be9272e77324,
         type: 3}
       propertyPath: m_Name
