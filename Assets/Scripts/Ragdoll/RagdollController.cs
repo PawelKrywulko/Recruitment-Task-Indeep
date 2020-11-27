@@ -15,7 +15,7 @@ public class RagdollController : MonoBehaviour
     
     private void Awake()
     {
-        _weaponsContainer = GameObject.Find("/Dropped Weapons").gameObject;
+        _weaponsContainer = GameObject.Find("/Core/Dropped Weapons").gameObject;
         colliders = new List<Collider>();
         rigidbodies = new List<Rigidbody>();
 
