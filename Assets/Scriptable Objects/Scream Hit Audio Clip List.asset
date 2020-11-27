@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8785183acc12f794ba478dd14d90ceb4, type: 3}
+  m_Name: Scream Hit Audio Clip List
+  m_EditorClassIdentifier: 
+  list:
+  - {fileID: 8300000, guid: 3bfc91023021f7e4091b06fea89d2cb4, type: 3}
+  - {fileID: 8300000, guid: a5ecf78c0381ef748ad2d6567bd9ff50, type: 3}
+  - {fileID: 8300000, guid: 1197ebf8211d8754c971544350a048a1, type: 3}
+  - {fileID: 8300000, guid: 3787692057daf1841b474a721bbb2411, type: 3}
+  - {fileID: 8300000, guid: 42c9a095eca1b814fa90436114758ddb, type: 3}
+  - {fileID: 8300000, guid: fb703b677e94746468c75f5c8a6432a9, type: 3}
+  - {fileID: 8300000, guid: d3660d3e56cbc09439b6fa4c0cc534c2, type: 3}
+  - {fileID: 8300000, guid: 527a8ac488403784a9f0d1b36465186f, type: 3}
+  - {fileID: 8300000, guid: 1ab2a29c6d540c34b97d47e8eb4001cc, type: 3}
+  - {fileID: 8300000, guid: d912bd9e28a4d1948b805604eee07bfa, type: 3}
