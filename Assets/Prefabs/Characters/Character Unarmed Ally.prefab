@@ -135,12 +135,12 @@ PrefabInstance:
     - target: {fileID: 6791153289330192592, guid: 484e3d706847e4e4ea8d00a66650a80b,
         type: 3}
       propertyPath: m_Name
-      value: Character Unarmed Friendly
+      value: Character Unarmed Ally
       objectReference: {fileID: 0}
     - target: {fileID: 6791153289330192592, guid: 484e3d706847e4e4ea8d00a66650a80b,
         type: 3}
       propertyPath: m_TagString
-      value: Friendly
+      value: Ally
       objectReference: {fileID: 0}
     - target: {fileID: 6791153289330192595, guid: 484e3d706847e4e4ea8d00a66650a80b,
         type: 3}

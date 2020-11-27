@@ -23,12 +23,12 @@ PrefabInstance:
     - target: {fileID: 263190143486163760, guid: 12785332d49a64144840abba0f15288e,
         type: 3}
       propertyPath: m_Name
-      value: Character Armed Friendly
+      value: Character Armed Ally
       objectReference: {fileID: 0}
     - target: {fileID: 263190143486163760, guid: 12785332d49a64144840abba0f15288e,
         type: 3}
       propertyPath: m_TagString
-      value: Friendly
+      value: Ally
       objectReference: {fileID: 0}
     - target: {fileID: 263190143486163763, guid: 12785332d49a64144840abba0f15288e,
         type: 3}
