@@ -28,9 +28,4 @@ public class Fader : PersistentSingleton<Fader>
             yield return null;
         }
     }
-
-    public void FadeOutImmediately()
-    {
-        _canvasGroup.alpha = 1;
-    }
 }
