@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SfxPlayer))]
 public class RaycastHitDetection : MonoBehaviour
 {
+    public static event EventHandler<string> OnDied;
+    
     private bool _isHit = false;
     private bool _isTargeted = false;
     private RagdollController _ragdollController;
@@ -43,6 +45,7 @@ public class RaycastHitDetection : MonoBehaviour
             _isHit = true;
             _sfxPlayer.PlayRandomSfx();
             _ragdollController.EnableRagdollEffect();
+            OnDied?.Invoke(this, gameObject.tag);
         }
     }
 }
