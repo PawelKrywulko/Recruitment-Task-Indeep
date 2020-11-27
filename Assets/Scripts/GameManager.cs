@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        Fader.Instance.FadeOutImmediately();
-        StartCoroutine(Fader.Instance.FadeIn(2f));
-
         InitializeCharactersState();
     }
 
@@ -35,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         if (_charactersState[EnemyTag] == 0 && _charactersState[AllyTag] == _alliesToSave)
         {
+            LevelLoader.Instance.LoadNextLevel();
             print("WIN");
         }
 
