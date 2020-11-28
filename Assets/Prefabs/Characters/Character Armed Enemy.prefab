@@ -73,13 +73,13 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -118,8 +118,8 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
-    numCapVertices: 0
+    numCornerVertices: 50
+    numCapVertices: 50
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0ee0c16d499f043855d57f5298bc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineWidth: 0.05
+  lineWidth: 0.025
   maxRayDistance: 100
   maxReflectionsCount: 10
   rayOriginTransform: {fileID: 1308216560}

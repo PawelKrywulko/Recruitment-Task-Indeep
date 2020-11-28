@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class LevelUI : MonoBehaviour
 {
-    [SerializeField] private Color winColor;
-    [SerializeField] private Color loseColor;
-
     private TextMeshProUGUI _mainText;
-    private TextMeshPro _mainTmPro;
     private const string WinString = "YOU WIN !";
     private const string LoseString = "YOU LOSE !";
 
     private void Awake()
     {
         _mainText = transform.Find("Canvas/Main Text").GetComponent<TextMeshProUGUI>();
-        _mainTmPro = transform.Find("Canvas/Main Text").GetComponent<TextMeshPro>();
     }
 
     public void ReloadLevel() //Attached to the button in Hierarchy
@@ -42,6 +37,7 @@ public class LevelUI : MonoBehaviour
     
     private void OnEnable()
     {
+        _mainText.enabled = true;
         _mainText.text = string.Empty;
         LevelManager.OnWin += LevelManagerOnWin;
         LevelManager.OnLose += LevelManagerOnLose;
