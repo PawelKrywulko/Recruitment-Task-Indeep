@@ -1,10 +1,19 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelGridUI : MonoBehaviour
 {
     [SerializeField] private GameObject levelTilePrefab;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
     private void Start()
     {
