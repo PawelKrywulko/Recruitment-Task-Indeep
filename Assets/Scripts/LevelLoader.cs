@@ -1,17 +1,39 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : PersistentSingleton<LevelLoader>
 {
-    private int _levelsCount;
+    [HideInInspector] public List<string> levelSceneNames = new List<string>(); 
+    private int _levelCount;
 
     private new void Awake()
     {
         base.Awake();
-        _levelsCount = SceneManager.sceneCountInBuildSettings;
+        _levelCount = SceneManager.sceneCountInBuildSettings;
     }
-    
+
+    private void Start()
+    {
+        AssignLevelNames();
+    }
+
+    private void AssignLevelNames()
+    {
+        const string pattern = @"^.*\/(Level \d+).unity$";
+        for (int i = 0; i < _levelCount; i++)
+        {
+            string levelName = SceneUtility.GetScenePathByBuildIndex(i);
+            var match = Regex.Match(levelName, pattern);
+
+            if (!match.Success) continue;
+            levelName = match.Groups[1].Value;
+            levelSceneNames.Add(levelName);
+        }
+    }
+
     public void LoadNextLevel()
     {
         int activeBuildIndex = SceneManager.GetActiveScene().buildIndex;
@@ -20,7 +42,7 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
 
     public void LoadLevel(int buildIndex)
     {
-        StartCoroutine(LoadAsynchronously(buildIndex % _levelsCount));
+        StartCoroutine(LoadAsynchronously(buildIndex % _levelCount));
     }
 
     private static IEnumerator LoadAsynchronously(int buildIndex)
