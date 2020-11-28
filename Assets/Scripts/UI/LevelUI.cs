@@ -26,13 +26,11 @@ public class LevelUI : MonoBehaviour
     private void LevelManagerOnLose(object sender, EventArgs e)
     {
         _mainText.SetText($"<color=\"red\">{LoseString}</color>");
-        _mainText.ForceMeshUpdate(true);
     }
 
     private void LevelManagerOnWin(object sender, EventArgs e)
     {
         _mainText.SetText($"<color=\"green\">{WinString}</color>");
-        _mainText.ForceMeshUpdate(true);
     }
     
     private void OnEnable()

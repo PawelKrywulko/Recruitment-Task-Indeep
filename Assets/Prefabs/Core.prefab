@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tapTimeThreshold: 0.1
+  tapDistanceTolerance: 10
 --- !u!1 &2264883424741954827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,13 +1114,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2264883425706633317}
-  m_LocalRotation: {x: 0.42261827, y: -0, z: -0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: 10, z: -3.1}
+  m_LocalRotation: {x: 0.48820037, y: -0, z: -0, w: 0.87273157}
+  m_LocalPosition: {x: 0, y: 9.17, z: -2.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2264883425377963860}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 58.445004, y: 0, z: 0}
 --- !u!20 &2264883425706633319
 Camera:
   m_ObjectHideFlags: 0

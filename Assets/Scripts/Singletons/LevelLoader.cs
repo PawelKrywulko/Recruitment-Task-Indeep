@@ -37,13 +37,14 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
 
     public void LoadNextLevel()
     {
-        int activeBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        LoadLevel(++activeBuildIndex);
+        int nextBuildIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        LoadLevel(nextBuildIndex);
     }
 
     public void LoadLevel(int buildIndex)
     {
-        StartCoroutine(LoadAsynchronously(buildIndex % _levelCount));
+        int index = buildIndex % _levelCount;
+        StartCoroutine(LoadAsynchronously(index));
     }
 
     private static IEnumerator LoadAsynchronously(int buildIndex)

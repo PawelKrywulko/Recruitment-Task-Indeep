@@ -1,22 +1,29 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TapController : TouchControllerBasic
+public class TapController : MonoBehaviour
 {
     [SerializeField] private float tapTimeThreshold = 0.1f;
+    [SerializeField] private float tapDistanceTolerance = 0.1f;
 
     public static event EventHandler OnSingleTap;
     
+    private Touch _touch;
     private float _touchBeganTimestamp;
     private Vector2 _touchBeganPosition;
 
-    private new void Update()
+    private void Update()
     {
-        base.Update();
-        switch (Touch.phase)
+        if (Input.touchCount < 1) return;
+        
+        _touch = Input.GetTouch(0);
+        if (EventSystem.current.IsPointerOverGameObject(_touch.fingerId)) return; //return if UI element
+
+        switch (_touch.phase)
         {
             case TouchPhase.Began:
-                _touchBeganPosition = Touch.position;
+                _touchBeganPosition = _touch.position;
                 _touchBeganTimestamp = Time.time;
                 break;
             case TouchPhase.Ended:
@@ -32,7 +39,8 @@ public class TapController : TouchControllerBasic
     
     private bool IsSingleTap()
     {
-        return Touch.position == _touchBeganPosition &&
+        float tapDistance = (_touch.position - _touchBeganPosition).magnitude;
+        return tapDistance <= tapDistanceTolerance &&
                Time.time - _touchBeganTimestamp <= tapTimeThreshold;
 
     }
