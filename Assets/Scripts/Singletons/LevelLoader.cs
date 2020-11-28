@@ -13,10 +13,6 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
     {
         base.Awake();
         _levelCount = SceneManager.sceneCountInBuildSettings;
-    }
-
-    private void Start()
-    {
         AssignLevelNames();
     }
 
