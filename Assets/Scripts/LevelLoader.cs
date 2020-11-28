@@ -52,7 +52,7 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
 
     private static IEnumerator LoadAsynchronously(int buildIndex)
     {
-        yield return Fader.Instance.FadeOut(1.5f);
+        yield return Fader.Instance.FadeOut(1f);
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(buildIndex);
 
@@ -61,6 +61,6 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
             yield return null;
         }
 
-        yield return Fader.Instance.FadeIn(1.5f);
+        yield return Fader.Instance.FadeIn(1f);
     }
 }
