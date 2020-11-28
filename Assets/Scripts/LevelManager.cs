@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
+    public static event EventHandler OnWin;
+    public static event EventHandler OnLose;
+    
     private const string EnemyTag = "Enemy";
     private const string AllyTag = "Ally";
     private readonly Dictionary<string, int> _charactersState = new Dictionary<string, int>();
@@ -32,11 +36,13 @@ public class GameManager : MonoBehaviour
     {
         if (_charactersState[EnemyTag] == 0 && _charactersState[AllyTag] == _alliesToSave)
         {
+            OnWin?.Invoke(this, EventArgs.Empty);
             LevelLoader.Instance.LoadNextLevel();
         }
 
         if (_charactersState[AllyTag] != _alliesToSave)
         {
+            OnLose?.Invoke(this, EventArgs.Empty);
             LevelLoader.Instance.ReloadLevel();
         }
     }
