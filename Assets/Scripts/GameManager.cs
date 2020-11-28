@@ -33,12 +33,11 @@ public class GameManager : MonoBehaviour
         if (_charactersState[EnemyTag] == 0 && _charactersState[AllyTag] == _alliesToSave)
         {
             LevelLoader.Instance.LoadNextLevel();
-            print("WIN");
         }
 
         if (_charactersState[AllyTag] != _alliesToSave)
         {
-            print("LOSE");
+            LevelLoader.Instance.ReloadLevel();
         }
     }
 

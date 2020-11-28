@@ -34,6 +34,11 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
         }
     }
 
+    public void ReloadLevel()
+    {
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void LoadNextLevel()
     {
         int activeBuildIndex = SceneManager.GetActiveScene().buildIndex;
