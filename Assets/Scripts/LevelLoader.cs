@@ -4,7 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : PersistentSingleton<LevelLoader>
 {
-    [SerializeField] private int levelsCount;
+    private int _levelsCount;
+
+    private new void Awake()
+    {
+        base.Awake();
+        _levelsCount = SceneManager.sceneCountInBuildSettings;
+    }
     
     public void LoadNextLevel()
     {
@@ -14,7 +20,7 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
 
     public void LoadLevel(int buildIndex)
     {
-        StartCoroutine(LoadAsynchronously(buildIndex % levelsCount));
+        StartCoroutine(LoadAsynchronously(buildIndex % _levelsCount));
     }
 
     private static IEnumerator LoadAsynchronously(int buildIndex)
