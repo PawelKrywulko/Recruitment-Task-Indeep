@@ -8,16 +8,20 @@ public class LevelLoader : PersistentSingleton<LevelLoader>
 {
     [HideInInspector] public List<string> levelSceneNames = new List<string>(); 
     private int _levelCount;
+    private bool _levelsAssigned = false;
 
     private new void Awake()
     {
         base.Awake();
-        _levelCount = SceneManager.sceneCountInBuildSettings;
         AssignLevelNames();
     }
 
     private void AssignLevelNames()
     {
+        if (_levelsAssigned) return;
+        _levelsAssigned = true;
+        _levelCount = SceneManager.sceneCountInBuildSettings;
+        
         const string pattern = @"^.*\/(Level \d+).unity$";
         for (int i = 0; i < _levelCount; i++)
         {
