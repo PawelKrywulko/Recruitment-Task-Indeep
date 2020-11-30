@@ -1,10 +1,16 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelGridUI : MonoBehaviour
 {
     [SerializeField] private GameObject levelTilePrefab;
+
+    private void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
 
     private void Update()
     {
