@@ -31,11 +31,11 @@ public class PistolShoot : MonoBehaviour
     
     private void OnEnable()
     {
-        TapController.OnSingleTap += Shoot;
+        TouchManager.Instance.OnTap += Shoot;
     }
     
     private void OnDisable()
     {
-        TapController.OnSingleTap -= Shoot;
+        TouchManager.Instance.OnTap -= Shoot;
     }
 }

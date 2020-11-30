@@ -4,17 +4,18 @@ public class RotationController : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 10f;
 
-    private Touch _touch;
-    
-    private void Update()
+    private void OnEnable()
     {
-        if (Input.touchCount < 1) return;
-        
-        _touch = Input.GetTouch(0);
-        
-        if (_touch.phase == TouchPhase.Moved)
-        {
-            transform.Rotate(0,_touch.deltaPosition.x * Time.deltaTime * rotationSpeed, 0);
-        }
+        TouchManager.Instance.OnSwipe += TouchManagerOnSwipe;
+    }
+
+    private void OnDisable()
+    {
+        TouchManager.Instance.OnSwipe -= TouchManagerOnSwipe;
+    }
+
+    private void TouchManagerOnSwipe(object sender, float deltaX)
+    {
+        transform.Rotate(0, deltaX * Time.deltaTime * rotationSpeed, 0);
     }
 }

@@ -30,15 +30,15 @@ public class RaycastHitDetection : MonoBehaviour
 
     private void OnEnable()
     {
-        TapController.OnSingleTap += TapControllerOnSingleTap;
+        TouchManager.Instance.OnTap += TouchManagerOnTap;
     }
     
     private void OnDisable()
     {
-        TapController.OnSingleTap -= TapControllerOnSingleTap;
+        TouchManager.Instance.OnTap -= TouchManagerOnTap;
     }
 
-    private void TapControllerOnSingleTap(object sender, EventArgs e)
+    private void TouchManagerOnTap(object sender, EventArgs e)
     {
         if (_isTargeted && !_isHit)
         {
