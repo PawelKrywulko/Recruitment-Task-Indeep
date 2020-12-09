@@ -2,20 +2,20 @@
 using UnityEngine;
 
 [RequireComponent(typeof(RagdollController))]
-[RequireComponent(typeof(SfxPlayer))]
 public class RaycastHitDetection : MonoBehaviour
 {
+    [SerializeField] private ScreamHitAudioPlayerSo screamHitAudioPlayer;
     public static event EventHandler<string> OnDied;
     
     private bool _isHit = false;
     private bool _isTargeted = false;
     private RagdollController _ragdollController;
-    private SfxPlayer _sfxPlayer;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         _ragdollController = GetComponent<RagdollController>();
-        _sfxPlayer = GetComponent<SfxPlayer>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnRaycastHit()
@@ -43,7 +43,7 @@ public class RaycastHitDetection : MonoBehaviour
         if (_isTargeted && !_isHit)
         {
             _isHit = true;
-            _sfxPlayer.PlayRandomSfx();
+            screamHitAudioPlayer.Play(_audioSource);
             _ragdollController.EnableRagdollEffect();
             OnDied?.Invoke(this, gameObject.tag);
         }
