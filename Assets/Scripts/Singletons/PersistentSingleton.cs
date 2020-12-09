@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PersistentSingleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class PersistentSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     public static T Instance { get; private set; }
 
@@ -10,10 +10,13 @@ public class PersistentSingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             Instance = this as T;
             DontDestroyOnLoad(this);
+            CustomAwake();
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    protected virtual void CustomAwake() {}
 }
