@@ -376,6 +376,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1616372008654657317, guid: 9db38e7d2eb8b7f40a0658f49b66f3fa,
+        type: 3}
+      propertyPath: levelSceneNames.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6078527271951728104, guid: 9db38e7d2eb8b7f40a0658f49b66f3fa,
         type: 3}
       propertyPath: m_LocalPosition.x

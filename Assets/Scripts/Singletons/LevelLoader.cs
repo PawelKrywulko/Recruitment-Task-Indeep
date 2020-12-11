@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : PersistentSingleton<LevelLoader>
 {
-    [HideInInspector] public List<string> levelSceneNames = new List<string>(); 
+    [ReadOnly] [Tooltip("Leave Size = 0")]
+    public List<string> levelSceneNames = new List<string>();
     private int _levelCount;
 
     protected override void CustomAwake()
